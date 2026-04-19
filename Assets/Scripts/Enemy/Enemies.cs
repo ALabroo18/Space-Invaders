@@ -33,15 +33,10 @@ public class Enemies : MonoBehaviour
             // Vector2 cent
         }
     }
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
-    void Update()
-    {
+    // void Update()
+    // {
         // transform.position += direction * speed * Time.deltaTime;
 
         // Vector3 leftEdge = Camera.main.ViewportToWorldPoint(Vector3.zero);
@@ -62,7 +57,7 @@ public class Enemies : MonoBehaviour
         //         ChangeDirection();
                 
         // }
-    }
+    // }
 
 
         private void ChangeDirection()

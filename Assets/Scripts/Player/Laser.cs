@@ -13,11 +13,11 @@ public class Laser : MonoBehaviour
     public System.Action destroyAction;
 
     public LayerMask enemyMask;
-    void Start()
-    {
+    //void Start()
+    //{
         // rb2d = GetComponent<Rigidbody2D>();
         
-    }
+    //}
 
     // private Transform location;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -37,6 +37,6 @@ public class Laser : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         destroyAction?.Invoke();
-        Destroy(this.gameObject);
+        gameObject.SetActive(false);
     }
 }

@@ -29,8 +29,6 @@ public class GameManager : MonoBehaviour
 
         // If any state changed, then notify that it has
         OnGameStateChanged?.Invoke(newState);
-
-
     }
 
 
