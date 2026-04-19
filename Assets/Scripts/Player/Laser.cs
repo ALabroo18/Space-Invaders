@@ -10,8 +10,7 @@ public class Laser : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
     public Vector3 direction;
-
-    public Action destroyed;
+    public System.Action destroyAction;
 
     public LayerMask enemyMask;
     void Start()
@@ -35,9 +34,9 @@ public class Laser : MonoBehaviour
         // }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerEnter2D(Collider2D other)
     {
+        destroyAction?.Invoke();
         Destroy(this.gameObject);
-        destroyed.Invoke();
     }
 }

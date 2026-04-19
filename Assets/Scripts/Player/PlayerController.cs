@@ -13,11 +13,9 @@ public class PlayerController : MonoBehaviour
     // For position and movement
     private Vector2 moveInput;
     private Rigidbody2D rb2d;
-
-    // Laser
-    public Laser laser;
     public Transform laserLocation;
     private bool isActive = false;
+    public Laser laser;
 
 
     // public InputAction moveAction;
@@ -45,14 +43,12 @@ public class PlayerController : MonoBehaviour
 
     public void Shoot(InputAction.CallbackContext ctx)
     {
-        // StartCoroutine(WaitSeconds(2));
         if(isActive == false)
         {
-            laser = Instantiate(laser, laserLocation.position, Quaternion.identity);
+            Laser laserPrefab = Instantiate(laser, laserLocation.position, Quaternion.identity);
+            laser.destroyAction += EnableShooting;
             isActive = true;
-            laser.destroyed += EnableShooting;
-
-
+            StartCoroutine(WaitSeconds(2));
 
         }
         
@@ -79,5 +75,6 @@ public class PlayerController : MonoBehaviour
     IEnumerator WaitSeconds (int seconds)
     {
         yield return new WaitForSeconds(seconds);
+        isActive = false;
     }
 }
