@@ -1,5 +1,3 @@
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
 using UnityEngine;
 using System;
 
@@ -10,7 +8,7 @@ public class Laser : MonoBehaviour
 
     [SerializeField] private float moveSpeed;
     public Vector3 direction;
-    public System.Action destroyAction;
+    public Action destroyAction;
 
     public LayerMask enemyMask;
     //void Start()
@@ -36,7 +34,10 @@ public class Laser : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        destroyAction?.Invoke();
-        gameObject.SetActive(false);
+        if (other.gameObject.layer == enemyMask)
+        {
+            destroyAction?.Invoke();
+            gameObject.SetActive(false);
+        }
     }
 }
