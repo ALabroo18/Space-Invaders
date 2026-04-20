@@ -834,10 +834,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Laser
       objectReference: {fileID: 0}
-    - target: {fileID: 5723189546222227565, guid: 45517944b88319e4b8a2d7f3adc08077, type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6783836284748141080, guid: 45517944b88319e4b8a2d7f3adc08077, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0
@@ -877,10 +873,6 @@ PrefabInstance:
     - target: {fileID: 6783836284748141080, guid: 45517944b88319e4b8a2d7f3adc08077, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6824252357356117358, guid: 45517944b88319e4b8a2d7f3adc08077, type: 3}
-      propertyPath: enemyMask.m_Bits
-      value: 128
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

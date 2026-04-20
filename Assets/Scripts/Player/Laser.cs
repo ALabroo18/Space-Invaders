@@ -7,37 +7,58 @@ public class Laser : MonoBehaviour
     // private Rigidbody2D rb2d;
 
     [SerializeField] private float moveSpeed;
-    public Vector3 direction;
-    public Action destroyAction;
+    [SerializeField] Vector3 direction;
+    [SerializeField] LayerMask enemyMask;
+    [SerializeField] float lifetime = 2f;
 
-    public LayerMask enemyMask;
+    private float lifeTimer = 0f;
+
+    public Action destroyAction;
     //void Start()
     //{
-        // rb2d = GetComponent<Rigidbody2D>();
-        
+    // rb2d = GetComponent<Rigidbody2D>();
+
     //}
 
     // private Transform location;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
 
-    // Update is called once per frame
+    private void OnEnable()
+    {
+        lifeTimer = 0f;
+    }
+
+    private void OnDisable()
+    {
+        lifeTimer = -1f;
+    }
+
     void Update()
     {
-        // rb2d.linearVelocity = transform.up * Time.deltaTime;
-        transform.position +=  direction * moveSpeed * Time.deltaTime;
+        transform.position +=  moveSpeed * Time.deltaTime * direction;
 
-        // if(Physics2D.Raycast(transform.position, direction, 2f, enemyMask))
-        // {
-        //     Debug.Log("hi");
-        // }
+        if (lifeTimer > -1f && lifeTimer >= lifetime)
+        {
+            Disable();
+        }
+        else
+        {
+            lifeTimer += Time.deltaTime;
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.layer == enemyMask)
+        // Check if the collision's layer is in the enemy LayerMask
+        if ((enemyMask.value & 1<< other.gameObject.layer) != 0)
         {
-            destroyAction?.Invoke();
-            gameObject.SetActive(false);
+            Disable();
         }
+    }
+
+    private void Disable()
+    {
+        destroyAction?.Invoke();
+        gameObject.SetActive(false);
     }
 }
